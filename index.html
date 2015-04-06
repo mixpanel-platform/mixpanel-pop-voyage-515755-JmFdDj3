@@ -16,7 +16,7 @@
     <script>
     
     MP.api.ready(function() {
-      MP.api.people({where: '(datetime(1412607010 - 2592000) < properties["$last_seen"] and datetime(1412607010) >= properties["$last_seen"])'}).done(function(results) {
+      MP.api.people({where: '(datetime(1428358750 - 604800) < properties["$last_seen"] and datetime(1428358750) >= properties["$last_seen"])'}).done(function(results) {
         console.log(results.values());
       });
     });
