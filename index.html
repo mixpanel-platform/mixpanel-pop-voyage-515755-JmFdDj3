@@ -24,7 +24,8 @@
     <script>
     
     MP.api.ready(function() {
-      //MP.api.people({where: '(datetime(1428358750 - 604800) < properties["$last_seen"] and datetime(1428358750) >= properties["$last_seen"])'}).done(function(results) {
+      var peopleData = MP.api.people({where: '(datetime(1428358750 - 604800) < properties["$last_seen"] and datetime(1428358750) >= properties["$last_seen"])'})
+      //.done(function(results) {
         //console.log(results.values());
         //console.log(results.values()["results"])
         //for (i = 0; i < 6; i++) {
@@ -36,9 +37,9 @@
       //});
         
       
-      $(document).ready(function(){
+      $.when(peopleData).done(function(peopleData) {
         $('button').click(function(){
-          var data = MP.api.people({where: '(datetime(1428358750 - 604800) < properties["$last_seen"] and datetime(1428358750) >= properties["$last_seen"])'})
+          var data = peopleData.values()["results"]
           if(data == '')
             return;
             
