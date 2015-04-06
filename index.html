@@ -9,37 +9,21 @@
   <body class="mixpanel-platform-body">
     <div class="mixpanel-platform-section">
       <div id="by" class="mixpanel-platform-label" style="margin-left: 10px; display: none;">by</div>
-      <div id="propSelect" style="float: left;"></div>
       <div style="clear: both;"></div>
       <div id="graph"></div>
     </div>
     <div id="table"></div>
     <script>
-      var propSelect  = $('#propSelect').MPPropertySelect();
-      //var eventGraph  = $('#graph').MPChart({chartType: 'line'});
-      //var eventTable  = $('#table').MPTable({
-      //  showPercentages: true,
-      //  firstColHeader: 'Event'
-      //});
-
-      var runQuery = function() {
-        var propName  = propSelect.MPPropertySelect('value');
-
-        if (eventName) {
-          MP.api.people({where: propName}).done(function(results) {
-            console.log(results.values());
-            //eventGraph.MPChart('setData', results);
-            //eventTable.MPTable('setData', results);
-          });
-        }
-      };
-      //eventSelect.on('change', function(e, eventName) {
-      //  propSelect.MPPropertySelect('setEvent', eventName);
-      //  $("#by").show();
-      //  runQuery();
-      //});
-      propSelect.on('change', runQuery);
-      //dateSelect.on('change', runQuery);
+    
+    MP.api.ready(function() {
+      MP.api.people({where: '(datetime(1412607010 - 2592000) < properties["$last_seen"] and datetime(1412607010) >= properties["$last_seen"])'}).done(function(results) {
+        console.log(results.values());
+      });
+    });
+     
+     
+     
+     
     </script>
   </body>
 </html>
