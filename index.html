@@ -27,9 +27,10 @@
       MP.api.people({where: '(datetime(1428358750 - 604800) < properties["$last_seen"] and datetime(1428358750) >= properties["$last_seen"])'}).done(function(results) {
         console.log(results.values());
         console.log(results.values()["results"])
-        for (i = 0; i < 6; i++) {
-          console.log(results.values()["results"][i]["$properties"])
-        };
+        //for (i = 0; i < 6; i++) {
+        //  console.log(results.values()["results"][i]["$properties"])
+        //};
+        peopleData = results.values()["results"][i]["$properties"]
         
         $('<div class="peopleProfiles"></div>').appendTo('body').MPTable({
             data: peopleData,
