@@ -8,18 +8,14 @@
   </head>
   <body class="mixpanel-platform-body">
     <div class="mixpanel-platform-section">
-      <div id="eventSelect" style="float: left;"></div>
       <div id="by" class="mixpanel-platform-label" style="margin-left: 10px; display: none;">by</div>
       <div id="propSelect" style="float: left;"></div>
-      <div id="dateSelect" style="float: right;"></div>
       <div style="clear: both;"></div>
       <div id="graph"></div>
     </div>
     <div id="table"></div>
     <script>
-      var eventSelect = $('#eventSelect').MPEventSelect();
       var propSelect  = $('#propSelect').MPPropertySelect();
-      var dateSelect  = $('#dateSelect').MPDatepicker();
       var eventGraph  = $('#graph').MPChart({chartType: 'line'});
       var eventTable  = $('#table').MPTable({
         showPercentages: true,
@@ -27,14 +23,13 @@
       });
 
       var runQuery = function() {
-        var eventName = eventSelect.MPEventSelect('value'),
-            propName  = propSelect.MPPropertySelect('value'),
-            dateRange = dateSelect.MPDatepicker('value');
+        var propName  = propSelect.MPPropertySelect('value');
 
         if (eventName) {
-          MP.api.segment(eventName, propName, dateRange).done(function(results) {
-            eventGraph.MPChart('setData', results);
-            eventTable.MPTable('setData', results);
+          MP.api.people({where: propName}).done(function(results) {
+            console.log(results.values());
+            //eventGraph.MPChart('setData', results);
+            //eventTable.MPTable('setData', results);
           });
         }
       };
