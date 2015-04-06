@@ -26,7 +26,7 @@
     MP.api.ready(function() {
       MP.api.people({where: '(datetime(1428358750 - 604800) < properties["$last_seen"] and datetime(1428358750) >= properties["$last_seen"])'}).done(function(results) {
         console.log(results.values());
-        peopleData = results.values()["results"]
+        console.log(results.values()["results"])
         $('<div class="peopleProfiles"></div>').appendTo('body').MPTable({
             data: peopleData,
             showPercentages: true,
