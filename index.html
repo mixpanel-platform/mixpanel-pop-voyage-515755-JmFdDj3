@@ -5,6 +5,14 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/css/reset.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.css">
     <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css">
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
+    
+    
   </head>
   <body class="mixpanel-platform-body">
     <div class="mixpanel-platform-section">
@@ -18,10 +26,20 @@
     MP.api.ready(function() {
       MP.api.people({where: '(datetime(1428358750 - 604800) < properties["$last_seen"] and datetime(1428358750) >= properties["$last_seen"])'}).done(function(results) {
         console.log(results.values());
+        $('<div class="peopleProfiles"></div>').appendTo('body').MPTable({
+            data: results,
+            showPercentages: true,
+            firstColHeader: 'People Properties'
+        });
       });
+      
+    //$(document).ready(function () {
+    //  $('#example').dataTable( {
+    //    "sDom": 'T<"clear">lfrtip',
+    //    "oTableTools": {
+    //        "sSwfPath": "/swf/copy_cvs_xls_pdf.swf"
+    //    }
     });
-     
-     
      
      
     </script>
