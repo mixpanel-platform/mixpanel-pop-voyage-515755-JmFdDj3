@@ -66,7 +66,6 @@
       // get all event dropdown inputs and run segmentation queries segmented by "$email contains [search term]"
       function runQuery(results) {
         $('#file').submit(function(e) {
-          
           var data = results;
           if(data == '') {
             return;
@@ -101,18 +100,17 @@
         //1st loop is to extract each row
         _.each(_.keys(data), function(profileIndex){
           var profileData = data[profileIndex];
-          var line = "";
+          var distinctID = "";
           try {
-            line += profileData['$distinct_id'];
+            distinctID += profileData['$distinct_id'];
           } catch(err) {
-            line += ""
+            distinctID += ""
           }
-          CSV += line + '\r\n';
-          
-          console.log(line)
+          CSV += distinctID + '\r\n';
           
           _.each(_.keys(profileData), function(info){
             var infoData = profileData[info]
+            console.log(infoData)
           });
           
           if (CSV == '') {        
