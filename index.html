@@ -105,7 +105,7 @@
           } 
           
           //Generate a file name
-          var fileName = ReportTitle.replace(/ /g,"_")+ Date().getTime();   
+          var fileName = ReportTitle.replace(/ /g,"_")//+ Date().getTime();   
     
           //Initialize file format you want csv or xls
           var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
