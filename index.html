@@ -103,8 +103,8 @@
           var profileData = data[profileIndex];
           var line = "";
           try {
-            line += profileData['$distinct_id']
-          } catch {
+            line += profileData['$distinct_id'];
+          } catch(err) {
             line += ""
           }
           
