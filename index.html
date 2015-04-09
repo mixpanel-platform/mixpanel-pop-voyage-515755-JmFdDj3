@@ -78,7 +78,7 @@
         
       function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
         //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
-        var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
+        var data = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
         
         var CSV = '';    
         //Set Report title in first row or line
@@ -89,7 +89,7 @@
           var row = "";
             
           //This loop will extract the label from 1st index of on array
-          for (var index in arrData[0]) {
+          for (var index in data[0]) {
             //Now convert each value to string and comma-seprated
             row += index + ',';
           }
@@ -99,9 +99,13 @@
         }
         
         //1st loop is to extract each row
-        for (var i = 0; i < arrData.length; i++) {
-          var row = "";
-          //2nd loop will extract each column and convert it in string comma-seprated
+        _.each(_.keys(data), function(levels){
+          console.log(levels)
+          console.log(data[levels])
+        }
+          
+          
+          /*//2nd loop will extract each column and convert it in string comma-seprated
           for (var index in arrData[i]) {
             row += '"' + arrData[i][index] + '",';
             console.log(row)
@@ -141,8 +145,9 @@
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-        
-      }
+        ?*/
+          
+        }
       });
       
       // set functions to run when dropdowns change
