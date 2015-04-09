@@ -71,8 +71,8 @@
           if(data == '') {
             return;
           }
-          fileName = $('#property input:first').val();
-          JSONToCSVConvertor(data, "people_profile_export", true);
+          fileName = $('#file input:first').val();
+          JSONToCSVConvertor(data, fileName, true);
         });
       };
         
