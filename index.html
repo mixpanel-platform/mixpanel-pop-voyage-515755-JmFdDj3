@@ -111,7 +111,7 @@
           _.each(_.keys(profileData), function(info){
             var infoData = profileData[info]
             _.each(_.keys(infoData), function(property){
-              var propertyData = infoData(property)
+              var propertyData = infoData[property]
               console.log(propertyData)
             });
           });
