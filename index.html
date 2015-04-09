@@ -41,7 +41,7 @@
               "Property: <strong>" + propertyName + 
               "</strong><br># People profiles that match: <strong>" + numPeople + "</strong>")
             .css("color", "rgb(95,105,131)");
-            console.log(results.values())
+            console.log(results.values(["results"]))
           runQuery(results);
         }).fail(function() {
           $('.confirm-text')
