@@ -71,7 +71,9 @@
             return;
           }
           fileName = $('#file input:first').val();
-          JSONToCSVConvertor(data, fileName, true);
+          //JSONToCSVConvertor(data, fileName, true);
+          var csvContent = json2csv.convert(myData)
+          console.log(csvContent)
         });
       };
         
