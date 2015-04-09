@@ -73,7 +73,8 @@
           }
           fileName = $('#property input:first').val();
           JSONToCSVConvertor(data, "people_profile_export", true);
-        };
+        });
+      };
         
         function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
           //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
