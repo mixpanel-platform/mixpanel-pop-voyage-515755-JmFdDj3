@@ -42,6 +42,10 @@
               "</strong><br># People profiles that match: <strong>" + numPeople + "</strong>")
             .css("color", "rgb(95,105,131)");
           runQuery();
+        }).fail(function() {
+          $('.confirm-text')
+            .html("Error: Please enter a valid property selector.")
+            .css("color", "red");
         });
         $('#property input:first').val('');
       });
