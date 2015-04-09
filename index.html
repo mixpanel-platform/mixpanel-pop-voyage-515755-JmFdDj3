@@ -8,42 +8,39 @@
   </head>
   <body class="mixpanel-platform-body">
     <div class="mixpanel-platform-section">
+      
       <div class="instructions">
         <h1 style="font-size: 18px; color: rgb(95,105,131)">Export People profiles</h1>
-        <p style="font-size: 13px; color: rgb(95,105,131)">Please enter the property selector.</p>
+        <p style="font-size: 13px; color: rgb(95,105,131)">Please enter the property selector exactly.</p>
       </div>
       
-      <div id="dateSelect" style="float: right;"></div>
-      
       <form id="selector" style="margin-bottom: 15px; height: 31px">
-        <input type="text" autofocus placeholder="Property selector" value="" style="color: rgb(95,105,131); height: 30px; padding: 0 4px; font-size: 12px; border: 1px solid rgb(201,209,219)">
+        <input type="text" autofocus placeholder="Property selector" name="propertySelector" value="" style="color: rgb(95,105,131); height: 30px; padding: 0 4px; font-size: 12px; border: 1px solid rgb(201,209,219)">
         
-        <input type="submit" name="submit" value="Submit" style="font-weight: bold; color: rgb(95,105,131); font-size: 12px; height: 31px; padding: 0 10px; margin-left: 10px; border: 1px solid rgb(201,209,219); background-color: rgb(242,244,246)">
+        <input type="submit" name="submit" value="submit" style="font-weight: bold; color: rgb(95,105,131); font-size: 12px; height: 31px; padding: 0 10px; margin-left: 10px; border: 1px solid rgb(201,209,219); background-color: rgb(242,244,246)">
       </form>
       <div style="clear: both;"></div>
     </div>
     <script>
-      var dateSelect  = $('#dateSelect').MPDatepicker();
+      var propertySelect = '',
+          numPeople = 0;
       
-      var runQuery = function() {
-        var eventName = eventSelect.MPEventSelect('value'),
-            propName  = propSelect.MPPropertySelect('value'),
-            dateRange = dateSelect.MPDatepicker('value');
-
-        if (eventName) {
-          MP.api.segment(eventName, propName, dateRange).done(function(results) {
-            eventGraph.MPChart('setData', results);
-            eventTable.MPTable('setData', results);
-          });
-        }
-      };
-      eventSelect.on('change', function(e, eventName) {
-        propSelect.MPPropertySelect('setEvent', eventName);
-        $("#by").show();
-        runQuery();
+      $('#selector').submit(function(e) {
+        e.preventDefault();
+        propertySelect = $('#selector input:first').val();
+        // query People profiles
+        MP.api.people( {
+          where: propertySelect 
+        }).done(function(results) {
+          numPeople = Object.keys(results.values().results).length;
+          $('.confirm-text')
+            .html(
+              "Selector: <strong>" + propertySelect + 
+              "</strong><br># People profiles that match: <strong>" + numPeople + "</strong>")
+            .css("color", "rgb(95,105,131)");
+        });
+        $('#selector input:first').val('');
       });
-      propSelect.on('change', runQuery);
-      dateSelect.on('change', runQuery);
-    </script>
+      
   </body>
 </html>
