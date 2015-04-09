@@ -5,122 +5,45 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/css/reset.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.css">
     <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css">
-    <!-- jQuery -->
-    <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <!-- DataTables -->
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
-    
-    
   </head>
   <body class="mixpanel-platform-body">
     <div class="mixpanel-platform-section">
-      <div id="by" class="mixpanel-platform-label" style="margin-left: 10px; display: none;">by</div>
+      <div class="instructions">
+        <h1 style="font-size: 18px; color: rgb(95,105,131)">Export People profiles</h1>
+        <p style="font-size: 13px; color: rgb(95,105,131)">Please enter the property selector.</p>
+      </div>
+      
+      <div id="dateSelect" style="float: right;"></div>
+      
+      <form id="selector" style="margin-bottom: 15px; height: 31px">
+        <input type="text" autofocus placeholder="Property selector" value="" style="color: rgb(95,105,131); height: 30px; padding: 0 4px; font-size: 12px; border: 1px solid rgb(201,209,219)">
+        
+        <input type="submit" name="submit" value="Submit" style="font-weight: bold; color: rgb(95,105,131); font-size: 12px; height: 31px; padding: 0 10px; margin-left: 10px; border: 1px solid rgb(201,209,219); background-color: rgb(242,244,246)">
+      </form>
       <div style="clear: both;"></div>
-      <div id="graph"></div>
     </div>
-    <div id="table"></div>
     <script>
-    
-    MP.api.ready(function() {
-      var peopleData = MP.api.people({where: '(datetime(1428358750 - 604800) < properties["$last_seen"] and datetime(1428358750) >= properties["$last_seen"])'})
-      //.done(function(results) {
-        //console.log(results.values());
-        //console.log(results.values()["results"])
-        //for (i = 0; i < 6; i++) {
-        //  console.log(results.values()["results"][i]["$properties"])
-        //};
-        //console.log(results.values()["results"][0]["$properties"])
-        //debugger
-        //peopleData = results.values()["results"][0]["$properties"]
-      //});
-        
+      var dateSelect  = $('#dateSelect').MPDatepicker();
       
-      $.when(peopleData).done(function(peopleData) {
-        $('button').click(function(){
-          var data = peopleData.values()["results"]
-          if(data == '')
-            return;
-            
-          JSONToCSVConvertor(data, "People Profiles", true);
-        });
+      var runQuery = function() {
+        var eventName = eventSelect.MPEventSelect('value'),
+            propName  = propSelect.MPPropertySelect('value'),
+            dateRange = dateSelect.MPDatepicker('value');
+
+        if (eventName) {
+          MP.api.segment(eventName, propName, dateRange).done(function(results) {
+            eventGraph.MPChart('setData', results);
+            eventTable.MPTable('setData', results);
+          });
+        }
+      };
+      eventSelect.on('change', function(e, eventName) {
+        propSelect.MPPropertySelect('setEvent', eventName);
+        $("#by").show();
+        runQuery();
       });
-      
-      function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
-        //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
-        var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
-    
-        var CSV = '';    
-        //Set Report title in first row or line
-        CSV += ReportTitle + '\r\n\n';
-
-        //This condition will generate the Label/Header
-        if (ShowLabel) {
-          var row = "";
-        
-          //This loop will extract the label from 1st index of on array
-          for (var index in arrData[0]) {
-            
-            //Now convert each value to string and comma-seprated
-            row += index + ',';
-          }
-          
-          row = row.slice(0, -1);
-        
-          //append Label row with line break
-          CSV += row + '\r\n';
-        }
-    
-        //1st loop is to extract each row
-        for (var i = 0; i < arrData.length; i++) {
-          var row = "";
-        
-          //2nd loop will extract each column and convert it in string comma-seprated
-          for (var index in arrData[i]) {
-            row += '"' + arrData[i][index] + '",';
-          }
-
-          row.slice(0, row.length - 1);
-        
-          //add a line break after each row
-          CSV += row + '\r\n';
-        }
-
-        if (CSV == '') {        
-          alert("Invalid data");
-          return;
-        }   
-    
-        //Generate a file name
-        var fileName = "MyReport_";
-        //this will remove the blank-spaces from the title and replace it with an underscore
-        fileName += ReportTitle.replace(/ /g,"_");   
-    
-        //Initialize file format you want csv or xls
-        var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
-    
-        // Now the little tricky part.
-        // you can use either>> window.open(uri);
-        // but this will not work in some browsers
-        // or you will not get the correct file extension    
-    
-        //this trick will generate a temp <a /> tag
-        var link = document.createElement("a");    
-        link.href = uri;
-    
-        //set the visibility hidden so it will not effect on your web-layout
-        link.style = "visibility:hidden";
-        link.download = fileName + ".csv";
-    
-        //this part will append the anchor tag and remove it after automatic click
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
-    });
-     
-     
+      propSelect.on('change', runQuery);
+      dateSelect.on('change', runQuery);
     </script>
   </body>
 </html>
