@@ -41,7 +41,8 @@
               "Property: <strong>" + propertyName + 
               "</strong><br># People profiles that match: <strong>" + numPeople + "</strong>")
             .css("color", "rgb(95,105,131)");
-          runQuery();
+            console.log(results)
+          runQuery(results);
         }).fail(function() {
           $('.confirm-text')
             .html("Error: Please enter a valid property selector.")
@@ -52,7 +53,8 @@
       });
 
       // get all event dropdown inputs and run segmentation queries segmented by "$email contains [search term]"
-      function runQuery() {
+      function runQuery(results) {
+        
 
       };
       
