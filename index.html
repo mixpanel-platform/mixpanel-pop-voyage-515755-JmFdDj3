@@ -108,8 +108,8 @@
           }
           CSV += distinctID + '\r\n';
           
-          _.each(_.keys(profileData['$properties']), function(info){
-            var infoData = profileData['$properties'][info]
+          _.each(_.keys(profileData), function(info){
+            var infoData = profileData[info]
             console.log(infoData)
           });
           
