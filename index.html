@@ -16,7 +16,7 @@
       <form id="property" style="margin-bottom: 15px; height: 31px">
         <input type="text" autofocus placeholder="Property Selector" name="property-name-field" value="" style="color: rgb(95,105,131); height: 30px; width: 500px; padding: 0 4px; font-size: 12px; border: 1px solid rgb(201,209,219)">
     
-        <input type="submit" name="submit" value="Submit" style="font-weight: bold; color: rgb(95,105,131); font-size: 12px; height: 31px; padding: 0 10px; margin-left: 10px; border: 1px solid rgb(201,209,219); background-color: rgb(242,244,246)">
+        <input type="submit" name="submit" value="Check" style="font-weight: bold; color: rgb(95,105,131); font-size: 12px; height: 31px; padding: 0 10px; margin-left: 10px; border: 1px solid rgb(201,209,219); background-color: rgb(242,244,246)">
       </form>
     
       <div class="instructionstwo">
@@ -65,7 +65,7 @@
 
       // get all event dropdown inputs and run segmentation queries segmented by "$email contains [search term]"
       function runQuery(results) {
-        //$('#export').click(function(){
+        $('#file').submit(function(e) {
           debugger
           var data = results;
           if(data == '') {
