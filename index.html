@@ -55,6 +55,7 @@
       // get all event dropdown inputs and run segmentation queries segmented by "$email contains [search term]"
       function runQuery(results) {
         $('button').click(function(){
+          debugger
           var data = results;
           if(data == '') {
             return;
