@@ -99,9 +99,20 @@
         }
         
         //1st loop is to extract each row
-        _.each(_.keys(data), function(levels){
-          console.log(levels)
-          console.log(data[levels])
+        _.each(_.keys(data), function(profileIndex){
+          var profileData = data[profileIndex];
+          var line = "";
+          try {
+            line += profileData['$distinct_id']
+          } catch {
+            line += ""
+          }
+          
+          console.log(line)
+          
+          _.each(_.keys(profileData), function(info){
+            var infoData = profileData[info]
+          }
         });
       };
       
