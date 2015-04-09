@@ -56,10 +56,10 @@
       function runQuery(results) {
         $('button').click(function(){
           var data = results;
-          if(data == '')
+          if(data == '') {
             return;
-            
-            JSONToCSVConvertor(data, "Vehicle Report", true);
+          }
+          JSONToCSVConvertor(data, "Vehicle Report", true);
         });
         
         function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
