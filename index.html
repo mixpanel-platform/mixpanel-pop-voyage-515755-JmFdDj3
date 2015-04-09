@@ -110,7 +110,10 @@
           
           _.each(_.keys(profileData), function(info){
             var infoData = profileData[info]
-            console.log(infoData)
+            _.each(_.keys(infoData), function(property){
+              var propertyData = infoData(property)
+              console.log(propertyData)
+            });
           });
           
           if (CSV == '') {        
