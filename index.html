@@ -112,17 +112,19 @@
         //1st loop is to extract each profile
         _.each(_.keys(data), function(profileIndex){
           var profileData = data[profileIndex];
-          debugger
+          //Adds distinct_id value
           try {
             CSV += profileData['$distinct_id'] + '\r\n';
           } catch(err) {
             CSV += ""
           }
-
-          _.each(_.keys(profileData), function(info){
-            var infoData = profileData[info]
-            debugger
-            subProperty(infoData, CSV)
+          
+          //Add each property & Value
+          _.each(_.keys(profileData), function(property){
+            var propertyData = profileData[property]
+            CSV += ' ,' + property + ',' + propertyData + '\r\n';
+            //debugger
+            //subProperty(infoData, CSV)
             
             /*_.each(_.keys(infoData), function(property){
               var propertyData = infoData[property]
