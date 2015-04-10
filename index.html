@@ -14,22 +14,17 @@
         <h1 style="font-size: 18px; color: rgb(95,105,131)">People Profiles Export</h1>
         <p style="font-size: 13px; color: rgb(95,105,131)">Please enter property selector.</p>
       </div>
-      
       <form id="property" style="margin-bottom: 15px; height: 31px">
         <input type="text" autofocus placeholder="Property Selector" name="property-name-field" value="" style="color: rgb(95,105,131); height: 30px; width: 500px; padding: 0 4px; font-size: 12px; border: 1px solid rgb(201,209,219)">
-    
         <input type="submit" name="submit" value="Check" style="font-weight: bold; color: rgb(95,105,131); font-size: 12px; height: 31px; padding: 0 10px; margin-left: 10px; border: 1px solid rgb(201,209,219); background-color: rgb(242,244,246)">
       </form>
-    
       <div class="instructionstwo">
         <p style="font-size: 13px; color: rgb(95,105,131)">Please enter desired filename. **Note: Check before export**</p>
       </div>
-      
       <form id="file" style="margin-bottom: 15px; height: 31px">  
         <input type="text" autofocus placeholder="Filename" name="filename" value="" style="color: rgb(95,105,131); height: 30px; width: 500px; padding: 0 4px; font-size: 12px; border: 1px solid rgb(201,209,219)">
         <input type="submit" name="export" value="Export" style="font-weight: bold; color: rgb(95,105,131); font-size: 12px; height: 31px; padding: 0 10px; margin-left: 10px; border: 1px solid rgb(201,209,219); background-color: rgb(242,244,246)">
       </form>
-      
       <div class="confirmation">
         <p class="confirm-text" style="color: rgb(95,105,131); font-size: 15px"></p>
       </div>
@@ -77,6 +72,21 @@
         });
       };
         
+      
+      function subProperty(subProperties) {
+        _.each(_.keys(subProperties), function(info){
+            var infoData = subProperties[info]
+            _.each(_.keys(infoData), function(property){
+              var propertyData = infoData[property]
+              try {
+                subProperty(propertyData);
+              } catch(err) {
+                CSV += ' ,' + property + ',' + propertyData + '\r\n';
+              }
+            });
+          });
+      }
+      
       function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
         //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
         var data = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
@@ -107,13 +117,17 @@
           } catch(err) {
             CSV += ""
           }
-          //CSV += distinctID + '\r\n';
-          
+
           _.each(_.keys(profileData), function(info){
             var infoData = profileData[info]
+            
             _.each(_.keys(infoData), function(property){
               var propertyData = infoData[property]
-              CSV += ' ,' + property + ',' + propertyData + '\r\n'
+              try {
+                subProperty(propertyData);
+              } catch(err) {
+                CSV += ' ,' + property + ',' + propertyData + '\r\n';
+              }
             });
           });
           
