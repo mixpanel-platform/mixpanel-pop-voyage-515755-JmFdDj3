@@ -73,6 +73,7 @@
         
       
       function subProperty(subProperties, CSV) {
+        debugger
         _.each(_.keys(subProperties), function(info){
             var infoData = subProperties[info]
               if (!subProperty(infoData, CSV)) {
