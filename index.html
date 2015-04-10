@@ -72,7 +72,7 @@
       };
         
       
-      function subProperty(subProperty, subPropertyData, CSV) {
+      /*function subProperty(subProperty, subPropertyData, CSV) {
         debugger
         _.each(_.keys(subPropertyData), function(info){
           debugger
@@ -85,7 +85,7 @@
                 subProperty(infoData, CSV)
               }
             });
-      };
+      };*/
       
       function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
         //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
@@ -125,11 +125,11 @@
             _.each(_.keys(propertyData), function(info){
               var infoData = propertyData[info]
               debugger
-              if (!subProperty(infoData, CSV)) {
+              //if (!subProperty(infoData, CSV)) {
                 CSV += ' ,' + info + ',' + infoData + '\r\n';
-              } else{
-                subProperty(infoData, CSV)
-              }
+              //} else{
+              //  subProperty(infoData, CSV)
+              //}
             });
           });
           
