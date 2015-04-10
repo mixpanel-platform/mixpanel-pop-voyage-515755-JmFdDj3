@@ -113,6 +113,7 @@
               var propertyData = infoData[property]
               try {
                 subProperty(propertyData);
+                debugger
               } catch(e) {
                 CSV += ' ,' + property + ',' + propertyData + '\r\n';
               }
