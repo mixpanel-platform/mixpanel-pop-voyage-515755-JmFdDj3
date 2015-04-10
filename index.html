@@ -78,10 +78,10 @@
             var infoData = subProperties[info]
             //_.each(_.keys(infoData), function(property){
               //var propertyData = infoData[property]
-              try {
-                subProperty(infoData);
-              } finally {
-                CSV += '\r\n' + info + ',' + infoData + '\r\n';
+              if (!subProperty(infoData, CSV)) {
+                CSV += ' ,' + info + ',' + infoData + '\r\n';
+              } else{
+                subProperty(propertyData, CSV)
               }
             });
       };
@@ -122,11 +122,10 @@
             
             _.each(_.keys(infoData), function(property){
               var propertyData = infoData[property]
-              try {
-                subProperty(propertyData, CSV);
-                debugger;
-              } finally {
+              if (!subProperty(propertyData, CSV)) {
                 CSV += ' ,' + property + ',' + propertyData + '\r\n';
+              } else{
+                subProperty(propertyData, CSV)
               }
             });
           });
