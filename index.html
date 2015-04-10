@@ -109,9 +109,10 @@
           CSV += row + '\r\n';
         }
         
-        //1st loop is to extract each row
+        //1st loop is to extract each profile
         _.each(_.keys(data), function(profileIndex){
           var profileData = data[profileIndex];
+          debugger
           try {
             CSV += profileData['$distinct_id'] + '\r\n';
           } catch(err) {
