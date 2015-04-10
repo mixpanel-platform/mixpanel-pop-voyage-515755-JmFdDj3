@@ -73,8 +73,8 @@
         
       
       function subProperty(subProperties, CSV) {
-        debugger
         _.each(_.keys(subProperties), function(info){
+          debugger
             var infoData = subProperties[info]
               if (!subProperty(infoData, CSV)) {
                 CSV += '\r\n' + info + ',' + infoData + '\r\n';
