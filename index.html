@@ -102,13 +102,12 @@
         //1st loop is to extract each row
         _.each(_.keys(data), function(profileIndex){
           var profileData = data[profileIndex];
-          var distinctID = "";
           try {
-            distinctID += profileData['$distinct_id'];
+            CSV += profileData['$distinct_id'] + ',';
           } catch(err) {
-            distinctID += ""
+            CSV += ""
           }
-          CSV += distinctID + '\r\n';
+          //CSV += distinctID + '\r\n';
           
           _.each(_.keys(profileData), function(info){
             var infoData = profileData[info]
