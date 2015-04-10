@@ -79,7 +79,7 @@
             //_.each(_.keys(infoData), function(property){
               //var propertyData = infoData[property]
               if (!subProperty(infoData, CSV)) {
-                CSV += ' ,' + info + ',' + infoData + '\r\n';
+                CSV += '\r\n' + info + ',' + infoData + '\r\n';
               } else{
                 subProperty(propertyData, CSV)
               }
