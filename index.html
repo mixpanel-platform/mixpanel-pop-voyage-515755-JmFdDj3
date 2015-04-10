@@ -122,27 +122,27 @@
           //Add each property & value
           _.each(_.keys(profileData), function(property){
             var propertyData = profileData[property]
-            debugger
+            /*debugger
             if (!subProperty(property, propertyData, CSV)) {
               debugger
               CSV += ' ,' + property + ',' + propertyData + '\r\n';
             } else {
               debugger
               subProperty(property, propertyData, CSV);
-            }
+            }*/
             
             
             //debugger
             //subProperty(infoData, CSV)
             
-            /*_.each(_.keys(infoData), function(property){
-              var propertyData = infoData[property]
-              if (!subProperty(propertyData, CSV)) {
+            _.each(_.keys(propertyData), function(info){
+              var infoData = propertyData[info]
+              if (!subProperty(infoData, CSV)) {
                 CSV += ' ,' + property + ',' + propertyData + '\r\n';
               } else{
-                subProperty(propertyData, CSV)
+                subProperty(infoData, CSV)
               }
-            });*/
+            });
           });
           
           if (CSV == '') {        
