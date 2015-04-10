@@ -123,6 +123,7 @@
           _.each(_.keys(profileData), function(property){
             var propertyData = profileData[property]
             if (!subProperty(property, propertyData, CSV)) {
+              debugger
               CSV += ' ,' + property + ',' + propertyData + '\r\n';
             } else {
               debugger
