@@ -80,8 +80,9 @@
               //var propertyData = infoData[property]
               try {
                 subProperty(infoData);
-              } 
-              CSV += ' ,' + property + ',' + propertyData + '\r\n';
+              } finally {
+                CSV += ' ,' + property + ',' + propertyData + '\r\n';
+              }
             });
       };
       
@@ -123,8 +124,9 @@
               var propertyData = infoData[property]
               try {
                 subProperty(propertyData);
+              } finally {
+                CSV += ' ,' + property + ',' + propertyData + '\r\n';
               }
-              CSV += ' ,' + property + ',' + propertyData + '\r\n';
             });
           });
           
