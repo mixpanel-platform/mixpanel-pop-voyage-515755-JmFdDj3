@@ -116,15 +116,15 @@
 
           _.each(_.keys(profileData), function(info){
             var infoData = profileData[info]
-            //subProperty(infoData, CSV)
+            subProperty(infoData, CSV)
             
-            _.each(_.keys(infoData), function(property){
+            /*_.each(_.keys(infoData), function(property){
               var propertyData = infoData[property]
               if (!subProperty(propertyData, CSV)) {
                 CSV += ' ,' + property + ',' + propertyData + '\r\n';
               } else{
                 subProperty(propertyData, CSV)
-              }
+              }*/
             });
           });
           
