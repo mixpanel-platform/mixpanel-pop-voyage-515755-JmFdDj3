@@ -137,6 +137,7 @@
             
             _.each(_.keys(propertyData), function(info){
               var infoData = propertyData[info]
+              debugger
               if (!subProperty(infoData, CSV)) {
                 CSV += ' ,' + property + ',' + propertyData + '\r\n';
               } else{
