@@ -57,7 +57,6 @@
             .css("color", "red");
           runQuery();
         });
-        //$('#property input:first').val('');
       });
 
       // get all event dropdown inputs and run segmentation queries segmented by "$email contains [search term]"
@@ -76,13 +75,10 @@
       function subProperty(subProperties, CSV) {
         _.each(_.keys(subProperties), function(info){
             var infoData = subProperties[info]
-            //_.each(_.keys(infoData), function(property){
-              //var propertyData = infoData[property]
               if (!subProperty(infoData, CSV)) {
                 CSV += '\r\n' + info + ',' + infoData + '\r\n';
               } else{
                 subProperty(infoData, CSV)
-                debugger
               }
             });
       };
@@ -120,15 +116,16 @@
 
           _.each(_.keys(profileData), function(info){
             var infoData = profileData[info]
+            subProperty(infoData, CSV)
             
-            _.each(_.keys(infoData), function(property){
+            /*_.each(_.keys(infoData), function(property){
               var propertyData = infoData[property]
               if (!subProperty(propertyData, CSV)) {
                 CSV += ' ,' + property + ',' + propertyData + '\r\n';
               } else{
                 subProperty(propertyData, CSV)
               }
-            });
+            });*/
           });
           
           if (CSV == '') {        
