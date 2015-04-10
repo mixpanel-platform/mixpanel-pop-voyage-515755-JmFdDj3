@@ -111,11 +111,11 @@
             
             _.each(_.keys(infoData), function(property){
               var propertyData = infoData[property]
-              //try {
-                //subProperty(propertyData);
-              //} catch(err) {
+              try {
+                subProperty(propertyData);
+              } catch(err) {
                 CSV += ' ,' + property + ',' + propertyData + '\r\n';
-              //}
+              }
             });
           });
           
