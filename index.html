@@ -103,7 +103,7 @@
         _.each(_.keys(data), function(profileIndex){
           var profileData = data[profileIndex];
           try {
-            CSV += profileData['$distinct_id'] + ',';
+            CSV += profileData['$distinct_id'] + '\r\n';
           } catch(err) {
             CSV += ""
           }
