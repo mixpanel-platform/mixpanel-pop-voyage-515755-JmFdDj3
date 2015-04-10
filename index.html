@@ -73,19 +73,7 @@
       };
         
       
-      function subProperty(subProperties) {
-        _.each(_.keys(subProperties), function(info){
-            var infoData = subProperties[info]
-            _.each(_.keys(infoData), function(property){
-              var propertyData = infoData[property]
-              try {
-                subProperty(propertyData);
-              } catch(err) {
-                CSV += ' ,' + property + ',' + propertyData + '\r\n';
-              }
-            });
-          });
-      }
+      
       
       function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
         //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
@@ -162,6 +150,20 @@
         document.body.removeChild(link);
         
       };
+      
+      function subProperty(subProperties) {
+        _.each(_.keys(subProperties), function(info){
+            var infoData = subProperties[info]
+            _.each(_.keys(infoData), function(property){
+              var propertyData = infoData[property]
+              try {
+                subProperty(propertyData);
+              } catch(err) {
+                CSV += ' ,' + property + ',' + propertyData + '\r\n';
+              }
+            });
+          });
+      }
       
     });
       
