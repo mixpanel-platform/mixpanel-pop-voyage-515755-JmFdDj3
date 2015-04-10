@@ -73,7 +73,7 @@
       };
         
       
-      function subProperty(subProperties) {
+      function subProperty(subProperties, CSV) {
         _.each(_.keys(subProperties), function(info){
             var infoData = subProperties[info]
             //_.each(_.keys(infoData), function(property){
@@ -123,7 +123,7 @@
             _.each(_.keys(infoData), function(property){
               var propertyData = infoData[property]
               try {
-                subProperty(propertyData);
+                subProperty(propertyData, CSV);
               } finally {
                 CSV += ' ,' + property + ',' + propertyData + '\r\n';
               }
