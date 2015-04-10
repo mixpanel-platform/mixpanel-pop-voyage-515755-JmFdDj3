@@ -154,10 +154,10 @@
       function subProperty(subProperties) {
         _.each(_.keys(subProperties), function(info){
             var infoData = subProperties[info]
-            _.each(_.keys(infoData), function(property){
-              var propertyData = infoData[property]
+            //_.each(_.keys(infoData), function(property){
+              //var propertyData = infoData[property]
               try {
-                subProperty(propertyData);
+                subProperty(infoData);
               } catch(err) {
                 CSV += ' ,' + property + ',' + propertyData + '\r\n';
               }
