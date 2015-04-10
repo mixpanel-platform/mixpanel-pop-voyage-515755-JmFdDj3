@@ -104,7 +104,7 @@
           var profileData = data[profileIndex];
           var distinctID = "";
           try {
-            distinctID += profileData['$distinct_id']+ ',';
+            distinctID += profileData['$distinct_id'];
           } catch(err) {
             distinctID += ""
           }
@@ -114,7 +114,7 @@
             var infoData = profileData[info]
             _.each(_.keys(infoData), function(property){
               var propertyData = infoData[property]
-              console.log(property)
+              CSV += ' ,' + property + ',' + propertyData + '\r\n'
             });
           });
           
