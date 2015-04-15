@@ -122,9 +122,10 @@
             data = event['$properties'][property]
             if (!data) {
               row += ','
+            } else if (_.isString(data)) {
+              row += data + ","
             } else {
-              console.log(data)
-              row += data.replace(",", ";") + ","
+              row += data.replace(",", "|") + ","
             }
             //if (data.indexOf(',') > -1) 
           });
