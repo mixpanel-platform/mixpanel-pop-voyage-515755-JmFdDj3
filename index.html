@@ -103,9 +103,8 @@
         subkeys = getSubKeys(event_list)
         var row = ''
         row += '$distinct_id,'
-        _.each(_.keys(subkeys), function(index) {
-          console.log(subkeys)
-          row += subkeys[0]
+        _.each(_.keys(subkeys), function(property) {
+          row += property + ','
           debugger
           
         })
