@@ -82,9 +82,9 @@
         var event_list = [];
         console.log(data)
         
-        data.forEach(function(entry) {
-          console.log(entry)
-          event_list.push(entry)
+         _.each(_.keys(data), function(profileIndex){
+          var profileData = data[profileIndex];
+          event_list.push(profileData)
         });
         
         console.log(event_list)
