@@ -119,7 +119,7 @@
             row += ','
           }
           _.each(_.keys(subkeys), function(property) {
-            data = event['$properties'][property]
+            data = event['$properties'][property].join("|")
             if (!data) {
               row += ','
             //} else if (data.indexOf(',') > -1) {
