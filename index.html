@@ -123,10 +123,10 @@
             debugger
             if (! data) {
               row += ','
-            } else if (data.indexOf(',') > -1) {
-              row += '"' + data + '",'
-            } else {
+            } else if (data.indexOf(',') == -1) {
               row += data + ','
+            } else {
+              row += '"' + data + '",'
             }
           });
           CSV += row + '\r\n';
