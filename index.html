@@ -70,7 +70,7 @@
             return;
           }
           fileName = $('#file input:first').val();
-          JSONToCSVConvertor(data, fileName, true);
+          JSONToCSVConvertor(data, fileName);
         });
       };
       
@@ -89,7 +89,7 @@
         return subkeys
       }  
       
-      function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
+      function JSONToCSVConvertor(JSONData, ReportTitle) {
         //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
         var data = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
         var CSV = ''
@@ -133,52 +133,6 @@
           });
           CSV += row + '\r\n';
         })
-
-        
-        /*
-        var CSV = '';    
-        //Set Report title in first row or line
-        CSV += ReportTitle + '\r\n\n';
-        
-        //This condition will generate the Label/Header
-        if (ShowLabel) {
-          var row = "";
-            
-          //This loop will extract the label from 1st index of on array
-          for (var index in data[0]) {
-            //Now convert each value to string and comma-seprated
-            row += index + ',';
-          }
-          row = row.slice(0, -1);
-          //append Label row with line break 
-          CSV += row + '\r\n';
-        }
-        
-        //1st loop is to extract each profile
-        _.each(_.keys(data), function(profileIndex){
-          var profileData = data[profileIndex];
-          //Adds distinct_id value
-          try {
-            CSV += profileData['$distinct_id'] + '\r\n';
-          } catch(err) {
-            CSV += ""
-          }
-          
-          //Add each property & value
-          _.each(_.keys(profileData), function(property){
-            var propertyData = profileData[property]
-            _.each(_.keys(propertyData), function(info){
-              var infoData = propertyData[info]
-              CSV += ' ,' + info + ',' + infoData + '\r\n';
-            });
-          });
-          
-          if (CSV == '') {        
-            alert("Invalid data");
-            return;
-          }
-        });
-      */  
         
         
         
