@@ -77,11 +77,12 @@
       function getSubKeys(listOfDicts) {
         subkeys = {};
         //Each profile
-        _.each(_.keys(listOfDicts), function(profileIndex){
-          var profileData = listOfDicts[profileIndex];
+        _.each(_.keys(listOfDicts['$properties']), function(profileIndex){
+          var profileData = listOfDicts['$properties'][profileIndex];
           //Creating dictionary of each property
           _.each(_.keys(profileData), function(propertyIndex){
             var property = profileData[propertyIndex]
+            debugger
             try {
               subkeys = property
             } catch (e) {}
