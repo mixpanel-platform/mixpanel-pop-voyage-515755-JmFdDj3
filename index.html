@@ -118,10 +118,9 @@
           } catch (e) {
             row += ','
           }
-          console.log(event['$properties']['AppsFlyerJSON'])
           debugger
           _.each(_.keys(subkeys), function(property) {
-            data = event['$properties'][property]
+            data = event['$properties'][property].replace(",", "|")
             if (!data) {
               row += ','
             } else {
