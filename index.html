@@ -74,12 +74,12 @@
         });
       };
       
+      //Creating dictionary fo each property
       function getSubKeys(listOfDicts) {
         subkeys = {};
-        //Each profile
+        //For each profile
         _.each(_.keys(listOfDicts), function(profileIndex){
           var profilePropData = listOfDicts[profileIndex]['$properties'];
-          //Creating dictionary of each property
           _.each(_.keys(profilePropData), function(property){
             try {
               subkeys[property] = true;
@@ -94,12 +94,14 @@
         var data = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
         var CSV = ''
         
+        //Create list of profiles
         var event_list = [];
         _.each(_.keys(data), function(profileIndex){
           var profileData = data[profileIndex];
           event_list.push(profileData)
         });
         
+        //Write the header with people properties
         subkeys = getSubKeys(event_list)
         var row = ''
         row += '$distinct_id,'
@@ -107,7 +109,18 @@
           row += property + ','
         })
         CSV += row + '\r\n';
-
+        
+        //Write the data
+        _.each(_.keys(event_list), function(eventIndex) {
+          var event = event_list[eventIndex]
+          var row = ''
+          try {
+            row += event['$distinct_id'] + ','
+          } catch (e) {
+            row += ','
+          }
+        })
+        debugger
         
         
         /*
