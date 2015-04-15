@@ -121,7 +121,7 @@
           _.each(_.keys(subkeys), function(property) {
             data = event['$properties'][property]
             debugger
-            if (!data) {
+            if (data == undefined) {
               row += ','
             } else if (data.indexOf(',') > -1) {
               row += '"' + data + '",'
