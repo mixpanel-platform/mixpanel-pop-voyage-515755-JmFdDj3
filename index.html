@@ -122,6 +122,7 @@
           _.each(_.keys(subkeys), function(property) {
             debugger
             try {
+              debugger
               row += encodeURI(event['$properties'][property]) + ','
             } catch(e) {
               row += event['$properties'][property] + ','
