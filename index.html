@@ -122,10 +122,10 @@
           _.each(_.keys(subkeys), function(property) {
             try {
               data = encodeURI(event['$properties'][property]) + ','
-              if (! data){
+              if (! data) {
                 row += ','
-              } else if (data) {
-                row = data + ','
+              } else {
+                row += data + ','
               }
             } catch(e) {
               row += event['$properties'][property] + ','
