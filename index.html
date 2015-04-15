@@ -92,6 +92,7 @@
       function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
         //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
         var data = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
+        var CSV = ''
         
         var event_list = [];
         _.each(_.keys(data), function(profileIndex){
@@ -100,9 +101,13 @@
         });
         
         subkeys = getSubKeys(event_list)
-        
-        console.log(subkeys)
-        
+        var row = ''
+        row += '$distinct_id,'
+        _.each(_.keys(subkeys), function(index) {
+          console.log(subkeys)
+          row += subkeys
+          
+        })
         debugger
         
         
