@@ -103,7 +103,7 @@
         //Write the header with people properties
         subkeys = getSubKeys(event_list)
         var row = ''
-        row += '$distinct_id,'
+        row += '$distinct_id, '
         _.each(_.keys(subkeys), function(property) {
           row += property + ','
         })
@@ -114,16 +114,16 @@
           var event = event_list[eventIndex]
           var row = ''
           try {
-            row += event['$distinct_id'] + ','
+            row += event['$distinct_id'] + ', '
           } catch (e) {
-            row += ','
+            row += ', '
           }
           _.each(_.keys(subkeys), function(property) {
             data = event['$properties'][property]
             if (!data) {
-              row += ','
+              row += ', '
             } else {
-              row += '"' + data + '",'
+              row += '"' + data + '", '
             }
             //if (data.indexOf(',') > -1) 
           });
