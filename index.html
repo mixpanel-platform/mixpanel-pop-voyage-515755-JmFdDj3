@@ -125,13 +125,13 @@
               data = encodeURI(event['$properties'][property]) + ','
               if (! data){
                 row += ','
-              } elseif (data) {
+              } else if (data) {
                 row = data
               }
             } catch(e) {
               row += event['$properties'][property] + ','
             }
-          })
+          });
           CSV += row + '\r\n';
         })
 
