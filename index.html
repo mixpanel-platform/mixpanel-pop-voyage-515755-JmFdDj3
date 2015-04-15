@@ -78,7 +78,7 @@
         subkeys = {};
         //Each profile
         _.each(_.keys(listOfDicts), function(profileIndex){
-          var profileData = data[profileIndex];
+          var profileData = listOfDicts[profileIndex];
           //Creating dictionary of each property
           _.each(_.keys(profileData), function(propertyIndex){
             var property = profileData[propertyIndex]
