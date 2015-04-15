@@ -123,14 +123,9 @@
             if (!data) {
               row += ','
             } else {
-              try {
-                if (data.indexOf(',') > -1) {
-                  row += '"' + data + '",'
-                } catch(e) {
-                  row += '"' + data + '",'
-                }
+              row += '"' + data + '",'
             }
-            }
+            //if (data.indexOf(',') > -1) 
           });
           CSV += row + '\r\n';
         })
