@@ -79,6 +79,7 @@
         //Each profile
         _.each(_.keys(listOfDicts['$properties']), function(profileIndex){
           var profileData = listOfDicts['$properties'][profileIndex];
+          debugger
           //Creating dictionary of each property
           _.each(_.keys(profileData), function(propertyIndex){
             var property = profileData[propertyIndex]
