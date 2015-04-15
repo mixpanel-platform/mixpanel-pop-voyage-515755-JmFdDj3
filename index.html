@@ -120,7 +120,6 @@
             row += ','
           }
           _.each(_.keys(subkeys), function(property) {
-            debugger
             try {
               data = encodeURI(event['$properties'][property]) + ','
               if (! data){
