@@ -73,7 +73,19 @@
           JSONToCSVConvertor(data, fileName, true);
         });
       };
-        
+      
+      function getSubKeys(listOfDicts) {
+        subkeys = {};
+        //Each profile
+        _.each(_.keys(listOfDicts), function(profileIndex){
+          var profileData = data[profileIndex];
+          //Creating dictionary of each property
+          _.each(_.keys(profileData), function(propertyIndex){
+            var property = profileData[propertyIndex]
+            try {
+              subkeys = property
+            } catch (e) {}
+      }  
       
       function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
         //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
@@ -85,6 +97,10 @@
           event_list.push(profileData)
         });
         debugger
+        console.log(event_list)
+        
+        subkeys = getSubKeys(event_list)
+        
         console.log(event_list)
         
         
