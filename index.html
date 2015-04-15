@@ -119,6 +119,13 @@
           } catch (e) {
             row += ','
           }
+          _.each(_.keys(subkeys), function(property) {
+            try {
+              row += encodeURI(event['$properties'][property]) + ','
+            } catch(e) {
+              row += event['$properties'][property] + ','
+            }
+          })
           CSV += row + '\r\n';
         })
 
