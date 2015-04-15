@@ -80,13 +80,11 @@
         var data = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
         
         var event_list = [];
-        console.log(data)
-        
-         _.each(_.keys(data), function(profileIndex){
+        _.each(_.keys(data), function(profileIndex){
           var profileData = data[profileIndex];
           event_list.push(profileData)
         });
-        
+        debugger
         console.log(event_list)
         
         
