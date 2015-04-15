@@ -76,9 +76,8 @@
       
       function getSubKeys(listOfDicts) {
         subkeys = {};
-        debugger
         //Each profile
-        _.each(_.keys(listOfDicts['$properties']), function(profileIndex){
+        _.each(_.keys(listOfDicts), function(profileIndex){
           debugger
           var profileData = listOfDicts['$properties'][profileIndex];
           debugger
