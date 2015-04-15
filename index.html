@@ -119,15 +119,11 @@
             row += ','
           }
           _.each(_.keys(subkeys), function(property) {
-            try {
-              data = encodeURI(event['$properties'][property])
-              if (! data) {
-                row += ','
-              } else {
-                row += data + ','
-              }
-            } catch(e) {
-              row += event['$properties'][property] + ','
+            data = event['$properties'][property]
+            if (! data) {
+              row += ','
+            } else {
+              row += data + ','
             }
           });
           CSV += row + '\r\n';
