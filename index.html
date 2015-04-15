@@ -120,7 +120,6 @@
           }
           _.each(_.keys(subkeys), function(property) {
             data = event['$properties'][property]
-            
             if (! data) {
               row += ','
             } else if (data.indexOf(',') == -1) {
