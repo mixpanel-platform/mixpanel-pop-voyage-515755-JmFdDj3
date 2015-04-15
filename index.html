@@ -118,6 +118,7 @@
           } catch (e) {
             row += ','
           }
+          console.log(event['$properties']['AppsFlyerJSON'])
           _.each(_.keys(subkeys), function(property) {
             data = event['$properties'][property]
             if (!data) {
