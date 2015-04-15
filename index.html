@@ -80,7 +80,10 @@
         var data = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
         
         var event_list = [];
-        data.forEach(function(entry) { 
+        console.log(data)
+        
+        data.forEach(function(entry) {
+          console.log(entry)
           event_list.push(entry)
         });
         
