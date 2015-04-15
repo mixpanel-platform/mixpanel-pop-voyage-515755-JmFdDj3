@@ -114,6 +114,7 @@
         _.each(_.keys(event_list), function(eventIndex) {
           var event = event_list[eventIndex]
           var row = ''
+          debugger
           try {
             row += event['$distinct_id'] + ','
           } catch (e) {
